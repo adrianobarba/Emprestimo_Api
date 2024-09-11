@@ -3,6 +3,7 @@ package com.barbosa.loans.controller;
 import com.barbosa.loans.controller.dto.CustomerLoanRequest;
 import com.barbosa.loans.controller.dto.CustomerLoanResponse;
 import com.barbosa.loans.service.LoanService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +19,7 @@ public class LoanController {
     }
 
     @PostMapping(value = "/customer-loans")
-    public ResponseEntity<CustomerLoanResponse> customerLoans(@RequestBody CustomerLoanRequest loanRequest){
+    public ResponseEntity<CustomerLoanResponse> customerLoans(@RequestBody @Valid CustomerLoanRequest loanRequest){
 
         var loanResponse = loanService.checkLoanAvailability(loanRequest);
 
